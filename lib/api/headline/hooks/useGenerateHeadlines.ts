@@ -10,7 +10,7 @@ export function useGenerateHeadlines() {
   return useMutation({
     mutationFn: (data: GenerateHeadlinesRequest) => headlinesApi.generate(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['headlines', 'all'] });
+      queryClient.invalidateQueries({ queryKey: ['headlines'] });
     },
   });
 }
