@@ -35,7 +35,7 @@ export async function GET(request: NextRequest): GetImagesResponse {
 }
 
 /**
- * POST /api/images - generate images using DALL-E 3
+ * POST /api/images - generate images
  * Body: { campaignId, prompt, count? }
  * Note: DALL-E URLs expire after 1 hour (temporary storage)
  */
