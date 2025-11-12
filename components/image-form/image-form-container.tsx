@@ -26,11 +26,7 @@ export function ImageFormContainer() {
     },
   });
 
-  const {
-    data: campaigns,
-    isLoading: isLoadingCampaigns,
-    isError,
-  } = useCampaigns();
+  const { data: campaigns, isLoading: isLoadingCampaigns } = useCampaigns();
   const generateImageMutation = useGenerateImage();
   const campaignOptions = useCampaignOptions({ campaigns });
 
@@ -79,10 +75,10 @@ export function ImageFormContainer() {
               />
             </div>
 
-            {isError && (
+            {generateImageMutation.error && (
               <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4">
                 <p className="text-sm font-medium text-destructive">
-                  Failed to generate image
+                  {generateImageMutation.error.message}
                 </p>
               </div>
             )}
@@ -92,20 +88,20 @@ export function ImageFormContainer() {
                 type="button"
                 variant="outline"
                 onClick={() => router.back()}
-                disabled={isLoadingCampaigns}
+                disabled={generateImageMutation.isPending}
                 className="w-32 cursor-pointer"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                disabled={isLoadingCampaigns}
+                disabled={generateImageMutation.isPending}
                 className="max-w-[200px] gap-2 cursor-pointer"
               >
-                {isLoadingCampaigns && (
+                {generateImageMutation.isPending && (
                   <Loader2 className="size-4 animate-spin" />
                 )}
-                {isLoadingCampaigns ? 'Generating...' : 'Generate Image'}
+                {generateImageMutation.isPending ? 'Generating...' : 'Generate Image'}
               </Button>
             </div>
           </form>
