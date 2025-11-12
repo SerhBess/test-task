@@ -7,7 +7,7 @@ type Props = ComponentPropsWithoutRef<'li'> & SidebarLink;
 const sideBarMenuItem = ({ text, link, ...restProps }: Props) => {
   return (
     <li {...restProps}>
-      <Link href={link} className="list-none text-white w-full h-full hover:bg-zinc-500 p-2 rounded-xl cursor-pointer">
+      <Link href={link} className="list-none text-zinc-900 dark:text-white w-full h-full hover:bg-zinc-200 dark:hover:bg-zinc-500 p-2 rounded-xl cursor-pointer">
         {text}
       </Link>
     </li>
